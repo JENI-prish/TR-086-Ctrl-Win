@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Assessment</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #89f7fe, #66a6ff);
+}
+
+.container {
+  width: 60%;
+  margin: 60px auto;
+  background: white;
+  border-radius: 15px;
+  padding: 30px 40px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+h2 {
+  text-align: center;
+  color: #6a11cb;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-size: 14px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* SLIDER */
+.slider-container {
+  display: flex;
+  align-items: center;
+}
+
+input[type=range] {
+  width: 85%;
+}
+
+.value {
+  width: 40px;
+  text-align: center;
+  font-weight: bold;
+  color: #6a11cb;
+}
+
+/* PROGRESS */
+.progress-box {
+  background: #eee;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 20px;
+  width: 50%;
+  background: linear-gradient(to right,#6a11cb,#2575fc);
+}
+
+/* TEXT OUTPUT */
+.output-box {
+  background: #f5f7ff;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+/* BUTTON */
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.next-btn {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.next-btn:hover {
+  transform: scale(1.05);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Assessment Scores</h2>
+
+<!-- Cognitive -->
+<div class="form-group">
+  <label>🧠 Cognitive Skills</label>
+  <div class="slider-container">
+    <input type="range" min="0" max="100" value="50" oninput="updateValue(this,'cog')">
+    <span class="value" id="cog">50</span>
+  </div>
+</div>
+
+<!-- Communication -->
+<div class="form-group">
+  <label>💬 Communication Skills</label>
+  <div class="slider-container">
+    <input type="range" min="0" max="100" value="50" oninput="updateValue(this,'com')">
+    <span class="value" id="com">50</span>
+  </div>
+</div>
+
+<!-- Motor -->
+<div class="form-group">
+  <label>🏃 Motor Skills</label>
+  <div class="slider-container">
+    <input type="range" min="0" max="100" value="50" oninput="updateValue(this,'mot')">
+    <span class="value" id="mot">50</span>
+  </div>
+</div>
+
+<!-- Social -->
+<div class="form-group">
+  <label>🤝 Social Skills</label>
+  <div class="slider-container">
+    <input type="range" min="0" max="100" value="50" oninput="updateValue(this,'soc')">
+    <span class="value" id="soc">50</span>
+  </div>
+</div>
+
+<!-- Self Help -->
+<div class="form-group">
+  <label>🧍 Self-Help Skills</label>
+  <div class="slider-container">
+    <input type="range" min="0" max="100" value="50" oninput="updateValue(this,'self')">
+    <span class="value" id="self">50</span>
+  </div>
+</div>
+
+<!-- OVERALL PROGRESS -->
+<div class="form-group">
+  <label>📈 Overall Progress</label>
+  <div class="progress-box">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+  <p id="progressText" style="text-align:right; font-weight:bold; color:#6a11cb;">50%</p>
+</div>
+
+<!-- AI OUTPUT -->
+<div class="form-group output-box">
+  <label>📘 Current Academic Level</label>
+  <p id="levelText">--</p>
+</div>
+
+<div class="form-group output-box">
+  <label>🎯 Suggested Short-Term Goals</label>
+  <p id="goalText"></p>
+</div>
+
+<!-- BUTTON -->
+<div class="button-container">
+  <button class="next-btn" onclick="goNext()">Save</button>
+</div>
+
+</div>
+
+<script>
+
+// Update slider values
+function updateValue(slider, id){
+  document.getElementById(id).innerText = slider.value;
+  calculateProgress();
+}
+
+// Calculate progress + AI logic
+function calculateProgress(){
+  let sliders = document.querySelectorAll("input[type=range]");
+  let sum = 0;
+
+  sliders.forEach(s => {
+    sum += parseInt(s.value);
+  });
+
+  let avg = Math.round(sum / sliders.length);
+
+  // Progress UI
+  document.getElementById("progressBar").style.width = avg + "%";
+  document.getElementById("progressText").innerText = avg + "%";
+
+  // AI Logic
+  let level = "";
+  let goal = "";
+
+  if(avg < 40){
+    level = "Beginner Level";
+    goal = "Focus on basic communication, simple motor activities, and daily routine training.";
+  }
+  else if(avg < 70){
+    level = "Intermediate Level";
+    goal = "Improve language skills, social interaction, and basic academic concepts.";
+  }
+  else{
+    level = "Advanced Level";
+    goal = "Enhance problem-solving, independent learning, and complex communication skills.";
+  }
+
+  document.getElementById("levelText").innerText = level;
+  document.getElementById("goalText").innerText = goal;
+}
+
+// Navigation
+function goNext(){
+  window.location.href = "goals.html";
+}
+
+// Initialize
+calculateProgress();
+
+</script>
+
+</body>
+</html>

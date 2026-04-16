@@ -1,0 +1,144 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Home - AI IEP Generator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+}
+
+body{
+    height:100vh;
+    background: linear-gradient(135deg, #a8edea, #fed6e3);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.container{
+    width:900px;
+    height:500px;
+    background:white;
+    border-radius:15px;
+    display:flex;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* LEFT SIDE */
+.left{
+    width:45%;
+    background:linear-gradient(135deg,#00c9a7,#00b4d8);
+    color:white;
+    padding:40px;
+    position:relative;
+}
+
+.left h1{
+    font-size:32px;
+    margin-bottom:20px;
+}
+
+.left p{
+    font-size:14px;
+    line-height:1.6;
+}
+
+.tagline{
+    margin-top:20px;
+    font-size:13px;
+    opacity:0.9;
+}
+
+/* RIGHT SIDE */
+.right{
+    width:55%;
+    padding:50px;
+}
+
+.right h2{
+    color:#00a896;
+    margin-bottom:20px;
+}
+
+.right p{
+    font-size:14px;
+    color:#555;
+    margin-bottom:20px;
+}
+
+/* BUTTONS */
+.btn{
+    padding:12px 25px;
+    border:none;
+    border-radius:25px;
+    background:#00b4d8;
+    color:white;
+    cursor:pointer;
+    margin-right:10px;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:#0096c7;
+}
+
+/* BOX */
+.problem-box{
+    background:#f1f9f9;
+    padding:15px;
+    border-radius:10px;
+    font-size:13px;
+    margin-top:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- LEFT -->
+    <div class="left">
+        <h1>AI IEP Generator</h1>
+        <p>
+            Create personalized education plans for children with special needs using AI.
+        </p>
+
+        <div class="tagline">
+            Empowering Inclusive Education with Technology
+        </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="right">
+        <h2>Welcome</h2>
+
+        <p>
+            Generate structured Individualized Education Plans (IEP) using child profile,
+            assessment scores, and learning goals.
+        </p>
+
+        <button class="btn">Start</button>
+        <button class="btn">Dashboard</button>
+
+        <div class="problem-box">
+            <b>Problem:</b> Creating IEP manually is complex and time-consuming.<br><br>
+            <b>Solution:</b> Our AI tool instantly generates personalized IEPs 
+            with goals, strategies, and weekly plans.
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
+```

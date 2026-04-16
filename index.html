@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI IEP Generator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    height:100vh;
+}
+
+/* COMMON */
+.page{
+    display:none;
+    height:100vh;
+}
+
+/* LOGIN PAGE */
+#loginPage{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: linear-gradient(135deg, #a8edea, #fed6e3);
+}
+
+.container{
+    width:850px;
+    height:450px;
+    background:white;
+    border-radius:15px;
+    display:flex;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+.left{
+    width:45%;
+    background:linear-gradient(135deg,#00c9a7,#00b4d8);
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.left h1{
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size:40px;
+    opacity:0.6;
+}
+
+.right{
+    width:55%;
+    padding:50px;
+}
+
+.right h2{
+    color:#00a896;
+    margin-bottom:30px;
+}
+
+.input-box{
+    margin-bottom:20px;
+}
+
+.input-box input{
+    width:100%;
+    padding:10px;
+    border:none;
+    border-bottom:2px solid #ccc;
+    outline:none;
+}
+
+.btn{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:25px;
+    background:#00b4d8;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.btn:hover{
+    background:#0096c7;
+}
+
+/* HOME PAGE */
+#homePage{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: linear-gradient(135deg, #8fd3f4, #84fab0);
+}
+
+.home-container{
+    width:900px;
+    height:500px;
+    background:white;
+    border-radius:15px;
+    display:flex;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+.home-left{
+    width:45%;
+    background:linear-gradient(135deg,#00c9a7,#00b4d8);
+    color:white;
+    padding:40px;
+}
+
+.home-right{
+    width:55%;
+    padding:50px;
+}
+
+.home-right h2{
+    color:#00a896;
+    margin-bottom:20px;
+}
+
+.home-btn{
+    padding:10px 20px;
+    border:none;
+    border-radius:20px;
+    background:#00b4d8;
+    color:white;
+    margin-right:10px;
+    cursor:pointer;
+}
+
+.problem-box{
+    background:#f1f9f9;
+    padding:15px;
+    border-radius:10px;
+    margin-top:20px;
+    font-size:14px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN PAGE -->
+<div id="loginPage" class="page" style="display:flex;">
+    <div class="container">
+        <div class="left">
+            <h1>Welcome</h1>
+        </div>
+
+        <div class="right">
+            <h2>LOGIN</h2>
+
+            <div class="input-box">
+                <input type="email" id="email" placeholder="Email">
+            </div>
+
+            <div class="input-box">
+                <input type="password" id="password" placeholder="Password">
+            </div>
+
+            <button class="btn" onclick="login()">Login</button>
+        </div>
+    </div>
+</div>
+
+<!-- HOME PAGE -->
+<div id="homePage" class="page">
+    <div class="home-container">
+
+        <div class="home-left">
+            <h1>AI IEP Generator</h1>
+            <p>Create personalized education plans using AI.</p>
+        </div>
+
+        <div class="home-right">
+            <h2>Welcome</h2>
+
+            <p>
+                Generate structured Individualized Education Plans (IEP) 
+                based on child profile, assessment scores, and goals.
+            </p>
+
+            <button class="home-btn">Start</button>
+            <button class="home-btn">Dashboard</button>
+
+            <div class="problem-box">
+                <b>Problem:</b> Creating IEP manually is time-consuming.<br><br>
+                <b>Solution:</b> Our AI tool generates personalized IEPs 
+                with goals, strategies, and weekly plans instantly.
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+function login(){
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+
+    if(email !== "" && password !== ""){
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("homePage").style.display = "flex";
+    } else {
+        alert("Please enter email and password");
+    }
+}
+</script>
+
+</body>
+</html>
