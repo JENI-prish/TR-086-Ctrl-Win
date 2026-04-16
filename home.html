@@ -1,144 +1,347 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Home - AI IEP Generator</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI IEP Generator</title>
+  <style>
+    :root {
+      --orange: #6c63ff;
+      --dark-bg: #1a1a1a;
+    }
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins', sans-serif;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
 
-body{
-    height:100vh;
-    background: linear-gradient(135deg, #a8edea, #fed6e3);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
+    body {
+      background-color: #f4f6ff;
+    }
 
-.container{
-    width:900px;
-    height:500px;
-    background:white;
-    border-radius:15px;
-    display:flex;
-    overflow:hidden;
-    box-shadow:0 10px 30px rgba(0,0,0,0.2);
-}
+    .navbar {
+      background-color: var(--orange);
+      padding: 12px 0;
+    }
 
-/* LEFT SIDE */
-.left{
-    width:45%;
-    background:linear-gradient(135deg,#00c9a7,#00b4d8);
-    color:white;
-    padding:40px;
-    position:relative;
-}
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
 
-.left h1{
-    font-size:32px;
-    margin-bottom:20px;
-}
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+    }
 
-.left p{
-    font-size:14px;
-    line-height:1.6;
-}
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
 
-.tagline{
-    margin-top:20px;
-    font-size:13px;
-    opacity:0.9;
-}
+    .nav-links li {
+      margin-left: 20px;
+    }
 
-/* RIGHT SIDE */
-.right{
-    width:55%;
-    padding:50px;
-}
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
 
-.right h2{
-    color:#00a896;
-    margin-bottom:20px;
-}
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
 
-.right p{
-    font-size:14px;
-    color:#555;
-    margin-bottom:20px;
-}
+    #slider {
+      position: relative;
+      width: 800px;
+      height: 400px;
+      margin: 40px auto;
+      perspective: 1000px;
+    }
 
-/* BUTTONS */
-.btn{
-    padding:12px 25px;
-    border:none;
-    border-radius:25px;
-    background:#00b4d8;
-    color:white;
-    cursor:pointer;
-    margin-right:10px;
-    transition:0.3s;
-}
+    input[type=radio] {
+      display: none;
+    }
 
-.btn:hover{
-    background:#0096c7;
-}
+    #slider label {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.5s ease;
+    }
 
-/* BOX */
-.problem-box{
-    background:#f1f9f9;
-    padding:15px;
-    border-radius:10px;
-    font-size:13px;
-    margin-top:20px;
-}
+    #slider label img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-</style>
+    input#s1:checked ~ #slide1,
+    input#s2:checked ~ #slide2,
+    input#s3:checked ~ #slide3 {
+      z-index: 3;
+      transform: translate3d(0, 0, 0);
+    }
+
+    input#s1:checked ~ #slide2,
+    input#s2:checked ~ #slide3,
+    input#s3:checked ~ #slide1 {
+      transform: translate3d(20%, 0, -100px);
+    }
+
+    input#s1:checked ~ #slide3,
+    input#s2:checked ~ #slide1,
+    input#s3:checked ~ #slide2 {
+      transform: translate3d(-20%, 0, -100px);
+    }
+
+    .main-section {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 40px;
+      align-items: center;
+      background: #fff;
+    }
+
+    .image-box {
+      flex: 1;
+    }
+
+    .image-box img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 10px;
+    }
+
+    .text-box {
+      flex: 1;
+      padding: 30px;
+    }
+
+    .text-box p {
+      font-size: 18px;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    .heading {
+      text-align: center;
+      color: var(--orange);
+      margin: 50px 0 20px;
+    }
+
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 20px;
+    }
+
+    .card {
+      width: 300px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      background: white;
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 15px;
+    }
+
+    .card-body h3 {
+      color: var(--orange);
+      margin-bottom: 10px;
+    }
+
+    .scroll-container {
+      overflow-x: auto;
+      white-space: nowrap;
+      padding: 30px;
+    }
+
+    .product-box {
+      display: inline-block;
+      width: 240px;
+      margin-right: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .product-box img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .product-box p {
+      padding: 10px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    footer {
+      background-color: var(--dark-bg);
+      color: white;
+      padding: 40px 20px;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 30px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .footer-column h4 {
+      color: var(--orange);
+      margin-bottom: 10px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      border-top: 1px solid #555;
+      margin-top: 20px;
+      padding-top: 10px;
+      font-size: 13px;
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="container">
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="container">
+    <a href="#" class="logo">Individualized Education Plan Generator</a>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="profile.html">Profile</a></li>
+      <li><a href="assessment.html">Assessment</a></li>
+      <li><a href="act.html">Act</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </div>
+</nav>
 
-    <!-- LEFT -->
-    <div class="left">
-        <h1>AI IEP Generator</h1>
-        <p>
-            Create personalized education plans for children with special needs using AI.
-        </p>
+<!-- Slider -->
+<section id="slider">
+  <input type="radio" name="slider" id="s1" checked>
+  <input type="radio" name="slider" id="s2">
+  <input type="radio" name="slider" id="s3">
 
-        <div class="tagline">
-            Empowering Inclusive Education with Technology
-        </div>
+  <label for="s1" id="slide1"><img src="https://www.graduateprogram.org/wp-content/uploads/2022/11/Nov-23-Strategies-for-Teaching-Students-with-Disabilities_web.jpg"></label>
+  <label for="s2" id="slide2"><img src="https://socialsecuritydisabilityattorney.com/wp-content/uploads/2016/12/Boy-in-wheelchair-2.jpg"></label>
+  <label for="s3" id="slide3"><img src="https://nebraska.kvc.org/wp-content/uploads/sites/3/2018/12/Boy-with-woman_wheelchair.jpg"></label>
+</section>
+
+<!-- Intro -->
+<div class="main-section">
+  <div class="image-box">
+    <img src="https://static.vecteezy.com/system/resources/previews/037/476/134/non_2x/ai-generated-young-disabled-boy-sitting-on-wheelchair-at-school-smiling-bokeh-style-background-with-generative-ai-free-photo.jpeg">
+  </div>
+  <div class="text-box">
+    <p>
+      Welcome to AI IEP Generator – a smart platform designed to help special educators and parents create personalized education plans for children with disabilities.
+      <br><br>
+      Our system uses artificial intelligence to generate structured Individualized Education Plans (IEPs) including goals, strategies, and weekly activities.
+      <br><br>
+      It supports Autism, ADHD, Down Syndrome, and more — making education planning faster, easier, and more effective.
+    </p>
+  </div>
+</div>
+
+<!-- Features -->
+<h2 class="heading">Key Features</h2>
+<div class="card-container">
+
+  <div class="card">
+    <img src="https://static.vecteezy.com/system/resources/previews/038/814/792/non_2x/ai-generated-a-robot-helping-a-child-with-disabilities-engage-in-creative-activities-promoting-learning-and-joy-free-photo.jpeg">
+    <div class="card-body">
+      <h3>AI-Based Plans</h3>
+      <p>Generate personalized IEPs using advanced AI technology.</p>
     </div>
+  </div>
 
-    <!-- RIGHT -->
-    <div class="right">
-        <h2>Welcome</h2>
-
-        <p>
-            Generate structured Individualized Education Plans (IEP) using child profile,
-            assessment scores, and learning goals.
-        </p>
-
-        <button class="btn">Start</button>
-        <button class="btn">Dashboard</button>
-
-        <div class="problem-box">
-            <b>Problem:</b> Creating IEP manually is complex and time-consuming.<br><br>
-            <b>Solution:</b> Our AI tool instantly generates personalized IEPs 
-            with goals, strategies, and weekly plans.
-        </div>
+  <div class="card">
+    <img src="https://www.nsta.org/sites/default/files/2022-05/kohnke_hero_1200px.jpg">
+    <div class="card-body">
+      <h3>Child Assessment</h3>
+      <p>Analyze cognitive, motor, and communication skills.</p>
     </div>
+  </div>
+
+  <div class="card">
+    <img src="https://timeular.com/wp-content/uploads/2022/09/goals-word-on-wooden-cubes-new-year-goals-plan-2021-10-01-16-28-19-utc.jpg">
+    <div class="card-body">
+      <h3>Weekly Plans</h3>
+      <p>Get structured weekly activities and goals.</p>
+    </div>
+  </div>
 
 </div>
 
+<!-- Services -->
+<h2 class="heading">Our Services</h2>
+<div style="display:flex; justify-content:center;">
+  <div class="scroll-container">
+
+    <div class="product-box">
+      <img src="https://proprli.com/wp-content/uploads/2024/03/real-estate-document-management.jpg">
+      <p>Generate full IEP documents instantly</p>
+    </div>
+
+    <div class="product-box">
+      <img src="https://fameimpact.com/wp-content/uploads/2025/12/Developmental-Milestones.jpg">
+      <p>Track child development progress</p>
+    </div>
+
+    <div class="product-box">
+      <img src="https://kyocare.com/wp-content/uploads/2026/01/iStock-510065040.jpg">
+      <p>Parent-friendly summaries</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-column">
+      <h4>AI IEP Generator</h4>
+      <p>Smart education planning powered by AI.</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 AI IEP Generator
+  </div>
+</footer>
+
 </body>
 </html>
-```
